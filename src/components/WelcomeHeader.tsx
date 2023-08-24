@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "~/utils/api";
 
 function AuthWelcome() {
   const { data: sessionData } = useSession();

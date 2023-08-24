@@ -1,14 +1,23 @@
 import WorkoutLayout from '~/components/WorkoutLayout'
 import { useState } from 'react'
-import { Exercise, defaultExercise } from '~/types/types'
+import type { Exercise } from '~/types/types'
+import { api } from '~/utils/api'
 
 
 export default function NewWorkout() {
-  const [exercises, setExercises] = useState<Exercise[]>([])
+  const [exercises, setExercises] = useState<Array<Exercise>>([])
   const [exerciseName, setExerciseName] = useState("")
   const [reps, setReps] = useState(0)
   const [sets, setSets] = useState(0)
   const [weight, setWeight] = useState(0)
+
+
+  const addWorkout = api.workout.create.useMutation({
+    onSuccess() {
+      console.log("success!")
+    }
+  })
+    
 
   return (
     <WorkoutLayout>
@@ -53,7 +62,8 @@ export default function NewWorkout() {
           <button 
               className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
               onClick={() => {
-                  setExercises(exercises.toSpliced(idx, 1))
+                  const filtered = exercises.filter((e, i) => i != idx)
+                  setExercises(filtered)
                 }}
               >
               Delete Exercise
@@ -77,7 +87,7 @@ export default function NewWorkout() {
             className="rounded text-black"
             value={reps}
             onChange={(e) => {  
-                setReps(e.target.value)
+                setReps(parseInt(e.target.value))
               }}
             />
         </label>
@@ -87,7 +97,7 @@ export default function NewWorkout() {
             className="rounded text-black"
             value={sets}
             onChange={(e) => {  
-                setSets(e.target.value)
+                setSets(parseInt(e.target.value))
               }}
             />
         </label>
@@ -97,7 +107,7 @@ export default function NewWorkout() {
             className="rounded text-black"
             value={weight}
             onChange={(e) => {  
-                setWeight(e.target.value)
+                setWeight(parseInt(e.target.value))
               }}
             />
         </label>
@@ -115,9 +125,7 @@ export default function NewWorkout() {
       </div>
         <button 
           className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-          onClick={() => {
-              console.log(exercises)
-            }}
+          onClick={() => { console.log(exercises); addWorkout.mutate(exercises) }}
           >
           Save Workout
         </button>

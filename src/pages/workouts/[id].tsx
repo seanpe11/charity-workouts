@@ -1,14 +1,17 @@
 import WorkoutLayout from "~/components/WorkoutLayout"
 import { api } from "~/utils/api";
 import { useRouter } from "next/router"
+import type { Exercise } from "~/types/types";
 
 export default function ViewWorkout() {
   const router = useRouter()
-  const { data: workout, refetch: refetchWorkout } = api.workout.read.useQuery(router.query.id)
+  const id = router.query.id as string
+  const { data: workout } = api.workout.read.useQuery(id)
+  const exercises = workout?.exercises as Exercise[]
 
   return (
     <WorkoutLayout>
-      <div className="mx-5 my-3 text-2xl text-white text-semibold">Here's the workout you did on {workout?.created_at.toDateString()}</div>
+      <div className="mx-5 my-3 text-2xl text-white text-semibold">Here&apos;s the workout you did on {workout?.created_at.toDateString()}</div>
 
       <table className="mx-5 table-auto text-white text-semibold outline">
         <thead>
@@ -22,10 +25,10 @@ export default function ViewWorkout() {
 
         <tbody>
         {
-          workout?.exercises.map((e, idx) => {
+          exercises?.map((e: Exercise, idx: number) => {
             return (
               <tr
-                key={e.idx + e.exercise}
+                key={idx + e.exercise}
                 className="text-center"
                 >
                 <td className="px-3 py-3">{e.exercise}</td>

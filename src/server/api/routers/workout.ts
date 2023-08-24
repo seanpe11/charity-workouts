@@ -4,7 +4,6 @@ import {
   publicProcedure,
   protectedProcedure,
 } from "~/server/api/trpc";
-import Workout from '~/types/Workout'
 
 export const workoutRouter = createTRPCRouter({
   read: protectedProcedure
@@ -12,7 +11,7 @@ export const workoutRouter = createTRPCRouter({
     .query( ({ctx, input}) => {
       console.log(input)
       return ctx.prisma.workout.findUnique({
-        where: { id: input }
+        where: { id: parseInt(input) }
       })
     }),
 
@@ -23,12 +22,21 @@ export const workoutRouter = createTRPCRouter({
 
   create: protectedProcedure
     .input(
-      z.object()
+      z.object(
+        {
+            exercise: z.string(),
+            reps: z.number(),
+            sets: z.number(),
+            weight: z.number()
+        }
+      )
+      .array()
     )
-    .mutation(({ctx}) => {
+    .mutation(({ctx, input}) => {
       return ctx.prisma.workout.create({data: 
         {
           user: ctx.session.user.id,
+          exercises: input
         }
       });
     })
