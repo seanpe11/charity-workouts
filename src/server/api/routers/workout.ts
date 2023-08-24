@@ -21,7 +21,10 @@ export const workoutRouter = createTRPCRouter({
       return ctx.prisma.workout.findMany();
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
+    .input(
+      z.object()
+    )
     .mutation(({ctx}) => {
       return ctx.prisma.workout.create({data: 
         {
