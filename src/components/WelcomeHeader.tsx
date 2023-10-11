@@ -10,7 +10,7 @@ function AuthWelcome() {
         {sessionData && 
           <span>
             Hi 
-            <img className="inline-block rounded-full w-8 h-8" src={sessionData.user?.image || ''}></img>
+            <img className="inline-block rounded-full w-8 h-8" src={sessionData.user?.image ?? ''}></img>
             {sessionData.user?.name}!
           </span>}
       </p>
