@@ -21,6 +21,7 @@ next-env.d.ts
 /build
 
 # misc
+.projectfile.md
 .DS_Store
 *.pem
 

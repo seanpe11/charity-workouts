@@ -15,6 +15,11 @@ export const workoutRouter = createTRPCRouter({
       })
     }),
 
+  getSomething: publicProcedure
+    .query(({ctx}) => {
+    return ctx.prisma.workout.findMany();
+  }),
+
   getAll: protectedProcedure
     .query(({ctx}) => {
       return ctx.prisma.workout.findMany();
