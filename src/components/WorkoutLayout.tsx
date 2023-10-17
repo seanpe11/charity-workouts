@@ -1,5 +1,4 @@
 // import Navbar from "./Navbar"
-import WelcomeHeader from "./WelcomeHeader"
 import Head from "next/head"
 
 export default function WorkoutLayout ( {children } ) {
@@ -16,7 +15,6 @@ export default function WorkoutLayout ( {children } ) {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Zaroc&apos;s Charity Workouts
           </h1>
-          <WelcomeHeader/>
         </div>
 
         {children}
