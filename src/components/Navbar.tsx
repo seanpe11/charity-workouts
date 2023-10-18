@@ -16,19 +16,17 @@ function Navbar() {
           <div className="md:hidden grow w-8 mx-10">
             <ul className="flex flex-row items-center justify-between p-3 shadow-md rounded-full">
               <li>
-                <Button
+                <Link
                   className="rounded-full shadow-xl px-3 py-3 font-semibold text-2xl no-underline transition hover:bg-white/20"
-                  color="default"
-                  onClick={sessionData ? () => void signOut() : () => void signIn()}
+                  href="/dashboard"
                 >
                   <LiaChartBar/>
-                </Button>
+                </Link>
               </li>
               <li>
                 <Button
                   className="rounded-full shadow-xl px-3 py-3 font-semibold text-2xl no-underline transition hover:bg-white/20"
                   color="primary"
-                  onClick={sessionData ? () => void signOut() : () => void signIn()}
                 >
                   <LiaDumbbellSolid/>
                 </Button>
