@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "~/components/Navbar"
 import { useSession } from "next-auth/react";
+import { RiListSettingsLine } from "react-icons/ri"
 
 export default function Workouts() {
   const { data:sessionData } = useSession()
@@ -16,19 +17,30 @@ export default function Workouts() {
         <Navbar/>
         { sessionData?.user ? 
           <div className="container flex flex-col justify-center p-5 gap-5">
-            <div className="rounded-lg p-5 shadow-sm bg-background-100">
-              <h1 className="text-text text-2xl font-semibold">
+            <div className="sticky rounded-2xl flex justify-between items-center">
+              <img className="mx-3 inline-block rounded-full w-16 h-16" src={sessionData.user?.image ?? ''}></img>
+              <h1 className="text-2xl font-bold">
+                Dashboard
+              </h1>
+              <div className="rounded-full bg-accent-100 p-5">
+                <RiListSettingsLine
+                  className="w-5 h-5"
+                />
+              </div>
+            </div>
+            <div className="rounded-2xl p-5 shadow-sm bg-background-100">
+              <h1 className="text-text text-2xl font-medium">
                 Welcome back {sessionData.user.name}!
               </h1>
-              <span>Your Last workout was on </span>
+              <span>Your last workout was on July 20, 2023</span>
             </div>
             <div className="rounded-lg p-5 shadow-sm bg-primary-100">
-              <h1 className="text-text text-2xl font-semibold">
+              <h1 className="text-text text-2xl font-medium">
                 Workouts
               </h1>
             </div>
             <div className="rounded-lg p-5 shadow-sm bg-secondary-100">
-              <h1 className="text-text text-2xl font-semibold">
+              <h1 className="text-text text-2xl font-medium">
                 Welcome back {sessionData.user.name}!
               </h1>
               <span>Your Last workout was on </span>

@@ -6,7 +6,11 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      borderRadius: {
+        'xl': '30px',
+      },
+    },
     colors: {
      'text': {
        50: 'var(--text-50)',
