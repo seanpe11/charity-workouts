@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import Header from "~/components/ui/Header"
 
 export const metadata: Metadata = {
-  title: "Your Workouts - TCW",
+  title: "Chat with Tristan - TCW",
   description: "Your workouts recently at Tristan's Charity Workouts"
 }
 
@@ -12,7 +12,7 @@ export default function WorkoutsIndex() {
     <WorkoutLayout>
       <div className="container flex flex-col justify-center p-5 gap-5 mx-auto">
         <Header
-          pageTitle="Workouts"
+          pageTitle="Chat"
         />
       </div>
     </WorkoutLayout>

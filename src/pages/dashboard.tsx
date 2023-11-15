@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import Navbar from "~/components/Navbar"
-import NavbarMobile from "~/components/NavbarMobile"
+import NavbarMobile from "~/components/ui/NavbarMobile"
+import Header from "~/components/ui/Header"
 import { useSession, signIn, signOut } from "next-auth/react";
 import { RiListSettingsLine } from "react-icons/ri"
 import { LiaCalendarSolid, LiaDumbbellSolid, LiaFireSolid, LiaPeopleCarrySolid } from "react-icons/lia"
@@ -9,6 +9,7 @@ import { GiReceiveMoney, GiWhistle } from "react-icons/gi"
 import { useRouter } from "next/router";
 import CountUp from "react-countup"
 import { Button } from "@nextui-org/react";
+import WorkoutLayout from "~/components/WorkoutLayout";
 
 export default function Workouts() {
   const { data:sessionData } = useSession()
@@ -19,21 +20,12 @@ export default function Workouts() {
       <Head>
         <title>Your Dashboard - TCW</title>
       </Head>
-      <main className="min-h-screen bg-background">
-        <NavbarMobile/>
+      <WorkoutLayout>
         { sessionData?.user ? 
           <div className="container flex flex-col justify-center p-5 gap-5 mx-auto">
-            <div className="sticky rounded-2xl flex justify-between items-center">
-              <img className="mx-3 inline-block rounded-full w-16 h-16" src={sessionData.user?.image ?? ''}></img>
-              <h1 className="text-2xl font-bold">
-                Dashboard
-              </h1>
-              <div className="rounded-full bg-accent-100 p-5">
-                <RiListSettingsLine
-                  className="w-5 h-5"
-                />
-              </div>
-            </div>
+            <Header
+              pageTitle="Dashboard"
+            />
             <div className="rounded-2xl p-5 shadow-sm bg-background-100">
               <h1 className="text-text text-2xl font-medium">
                 Welcome back {sessionData.user.name}!
@@ -128,7 +120,7 @@ export default function Workouts() {
                 </Button>
           </div>
         }
-      </main>
+      </WorkoutLayout>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { api } from "~/utils/api";
-import Navbar from "~/components/Navbar"
+import NavbarMobile from "~/components/ui/NavbarMobile"
 
 export default function Workouts() {
   // const { data: workouts } = api.workout.getAll.useQuery()
@@ -15,7 +15,7 @@ export default function Workouts() {
         <link rel="icon" type="img/png" href="/favicon.png" />
       </Head>
       <main className="min-h-screen flex-col items-center justify-center bg-background-50">
-        <Navbar/>
+        <NavbarMobile/>
         <div className="container flex flex-col items-left m-auto justify-center gap-12 px-4 py-16">
           <div className="flex flex-col items-left gap-2">
             Tristan&apos;s Charity Workouts

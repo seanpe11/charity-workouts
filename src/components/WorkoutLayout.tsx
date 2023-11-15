@@ -1,4 +1,4 @@
-import NavbarMobile from "~/components/NavbarMobile"
+import NavbarMobile from "~/components/ui/NavbarMobile"
 
 export default function WorkoutLayout({
   children,
