@@ -7,7 +7,7 @@ export default function ViewWorkout() {
   const router = useRouter()
   const id = router.query.id as string
   const { data: workout } = api.workout.read.useQuery(id)
-  const exercises = workout?.exercises as Exercise[]
+  const exercises = workout?.exercises as Array<Exercise>
 
   return (
     <WorkoutLayout>

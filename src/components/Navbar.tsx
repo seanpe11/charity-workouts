@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 bottom-5 left-0 md:top-0">
+      <nav className="bg-white dark:bg-gray-900 fixed md:static w-full z-20 bottom-5 left-0 md:top-0">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="https://charity-workouts.vercel.app/" className="hidden md:flex items-center">
             <img src="/favicon.png" className="h-8 mr-3 rounded-lg shadow-md" alt="Flowbite Logo"></img>
