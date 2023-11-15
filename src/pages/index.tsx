@@ -1,11 +1,12 @@
 import Head from "next/head";
-import { api } from "~/utils/api";
+import Link from "next/link"
 import NavbarMobile from "~/components/ui/NavbarMobile"
+import { Button } from "@nextui-org/react"
+import { useSession, signOut, signIn } from "next-auth/react";
 
 export default function Workouts() {
+  const { data: sessionData } = useSession()
   // const { data: workouts } = api.workout.getAll.useQuery()
-  const { data: test } = api.workout.getSomething.useQuery()
-  console.log(test)
  
   return (
     <>
@@ -20,6 +21,24 @@ export default function Workouts() {
           <div className="flex flex-col items-left gap-2">
             Tristan&apos;s Charity Workouts
           </div>
+          <Button
+            className="rounded-full shadow-md px-10 py-3 font-semibold text no-underline transition hover:bg-white/20"
+            color="primary"
+            onClick={sessionData ? () => void signOut() : () => void signIn()}
+          >
+            {sessionData ? "Sign out" : "Sign in"}
+          </Button>
+          {sessionData && 
+            <Link href="dashboard">
+            <Button
+              className="rounded-full shadow-md px-10 py-3 font-semibold text no-underline transition hover:bg-white/20"
+              color="primary"
+              onClick={sessionData ? () => void signOut() : () => void signIn()}
+            >
+                Go to my dashboard
+            </Button>
+            </Link>
+          }
         </div>
       </main>
     </>

@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { RiListSettingsLine } from "react-icons/ri"
 
 
@@ -7,7 +7,11 @@ export default function Header({ pageTitle }: { pageTitle: string }) {
 
   return (<div className="sticky rounded-2xl flex justify-between items-center">
     {sessionData ?
-      <img className="mx-3 inline-block rounded-full w-16 h-16" src={sessionData.user?.image ?? ''}></img> 
+      <img className="mx-3 inline-block rounded-full w-16 h-16 hover:pointer" 
+        src={sessionData.user?.image ?? ''} 
+        onClick={() => {
+          void signOut()
+        } }></img> 
       :
       <img className="mx-3 inline-block rounded-full w-16 h-16" src=""></img> 
     }
